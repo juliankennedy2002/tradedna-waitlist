@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeDNA — Join the Waitlist</title>
+<meta name="description" content="The AI trading coach that decodes your edge, grades your execution, and exposes your psychology leaks. Join the waitlist for early access.">
+<meta property="og:title" content="TradeDNA — AI Trading Performance Coach">
+<meta property="og:description" content="Stop guessing. Start mastering your edge. Join 1,200+ traders on the waitlist.">
+<meta property="og:image" content="https://tradedna.live/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080d; --bg2:#0c0e17; --bg3:#10121c; --bg4:#151824;
+  --border:rgba(255,255,255,0.06); --border2:rgba(255,255,255,0.10); --border3:rgba(255,255,255,0.18);
+  --text:#eef0ff; --muted:#6b6f8f; --dim:#2e3250;
+  --purple:#7c5cfc; --purple2:#9b82ff; --purple3:#5b3fd4; --purple4:#c4b5fd;
+  --pdim:rgba(124,92,252,0.12); --pglow:rgba(124,92,252,0.32); --pborder:rgba(124,92,252,0.38);
+  --green:#22c55e; --gdim:rgba(34,197,94,0.1); --gborder:rgba(34,197,94,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* DNA BG */
+#dna{position:fixed;inset:0;pointer-events:none;z-index:0;}
+.veil{position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse 75% 55% at 50% 42%,transparent 0%,rgba(7,8,13,0.6) 50%,rgba(7,8,13,0.96) 100%);}
+.orb1{position:fixed;top:-12%;left:-8%;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,252,0.2) 0%,transparent 65%);pointer-events:none;z-index:1;filter:blur(60px);}
+.orb2{position:fixed;bottom:-18%;right:-10%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(91,63,212,0.15) 0%,transparent 65%);pointer-events:none;z-index:1;filter:blur(70px);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 52px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,8,13,0.75);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:34px;height:34px;border-radius:9px;overflow:hidden;background:rgba(124,92,252,0.15);border:1px solid var(--pborder);box-shadow:0 4px 16px var(--pglow);flex-shrink:0;}
+.logo-icon canvas{width:34px;height:34px;}
+.logo-text{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--text),var(--purple4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-count{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:liveblink 2s infinite;}
+@keyframes liveblink{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* HERO */
+.hero{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 24px 80px;text-align:center;}
+
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--purple4);background:rgba(124,92,252,0.12);border:1px solid var(--pborder);padding:7px 16px;border-radius:100px;margin-bottom:28px;opacity:0;animation:fadeUp .7s ease .1s forwards;}
+.epip{width:6px;height:6px;border-radius:50%;background:var(--purple2);box-shadow:0 0 10px var(--purple2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--pglow)}50%{box-shadow:0 0 0 6px transparent}}
+
+.headline{font-family:'Syne',sans-serif;font-size:clamp(36px,7vw,82px);font-weight:900;line-height:1.05;letter-spacing:-.04em;margin-bottom:20px;opacity:0;animation:fadeUp .7s ease .2s forwards;}
+.headline .hl{background:linear-gradient(135deg,var(--purple2) 0%,var(--purple4) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.subline{font-size:clamp(14px,2vw,18px);color:var(--muted);line-height:1.78;max-width:560px;margin:0 auto 48px;opacity:0;animation:fadeUp .7s ease .3s forwards;}
+.subline strong{color:var(--text);font-weight:600;}
+
+/* WAITLIST FORM */
+.waitlist-box{width:100%;max-width:520px;margin:0 auto 52px;opacity:0;animation:fadeUp .7s ease .4s forwards;}
+.wl-form{display:flex;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border3);border-radius:14px;padding:8px 8px 8px 20px;transition:border-color .2s,box-shadow .2s;}
+.wl-form:focus-within{border-color:var(--pborder);box-shadow:0 0 0 4px rgba(124,92,252,0.1);}
+.wl-input{flex:1;background:transparent;border:none;font-family:'DM Mono',monospace;font-size:14px;color:var(--text);outline:none;min-width:0;}
+.wl-input::placeholder{color:var(--dim);}
+.wl-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple3));border:none;padding:13px 24px;border-radius:9px;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 4px 20px var(--pglow);}
+.wl-btn:hover{transform:translateY(-1px);box-shadow:0 8px 32px var(--pglow);}
+.wl-btn:active{transform:translateY(0);}
+.wl-btn.loading{opacity:.7;pointer-events:none;}
+.wl-privacy{font-size:11px;color:var(--dim);margin-top:12px;text-align:center;}
+
+/* SUCCESS STATE */
+.success-state{display:none;flex-direction:column;align-items:center;gap:16px;padding:28px;background:rgba(34,197,94,0.06);border:1px solid var(--gborder);border-radius:16px;}
+.success-state.show{display:flex;}
+.success-icon{font-size:40px;}
+.success-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);}
+.success-sub{font-size:13px;color:var(--muted);text-align:center;line-height:1.7;max-width:340px;}
+.success-pos{font-size:12px;color:var(--muted);}
+.success-pos strong{color:var(--purple2);}
+.share-btns{display:flex;gap:10px;margin-top:4px;}
+.share-btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;padding:10px 18px;border-radius:9px;cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s;text-decoration:none;border:1px solid var(--border2);background:transparent;color:var(--muted);}
+.share-btn:hover{border-color:var(--pborder);color:var(--text);background:var(--pdim);}
+
+/* SOCIAL PROOF STRIP */
+.proof-strip{display:flex;align-items:center;justify-content:center;gap:32px;margin-bottom:72px;opacity:0;animation:fadeUp .7s ease .5s forwards;flex-wrap:wrap;}
+.proof-item{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.proof-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--text);}
+.proof-label{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.proof-sep{width:1px;height:36px;background:var(--border2);}
+
+/* FEATURE CARDS */
+.features{position:relative;z-index:10;padding:80px 24px;max-width:1100px;margin:0 auto;}
+.features-title{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;letter-spacing:-.03em;text-align:center;margin-bottom:48px;}
+.features-title span{background:linear-gradient(135deg,var(--purple2),var(--purple4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.feat-card{background:rgba(10,12,20,0.85);border:1px solid var(--border2);border-radius:16px;padding:28px;backdrop-filter:blur(16px);transition:border-color .2s,transform .2s;}
+.feat-card:hover{border-color:var(--pborder);transform:translateY(-3px);}
+.feat-icon{font-size:32px;margin-bottom:16px;}
+.feat-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:10px;}
+.feat-desc{font-size:12px;color:var(--muted);line-height:1.75;}
+.feat-example{margin-top:14px;padding:12px;background:rgba(124,92,252,0.07);border:1px solid var(--pborder);border-radius:8px;font-size:11px;color:var(--purple4);line-height:1.6;font-style:italic;}
+
+/* COMPARISON */
+.comparison{position:relative;z-index:10;padding:80px 24px;max-width:900px;margin:0 auto;}
+.comp-title{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:800;letter-spacing:-.03em;text-align:center;margin-bottom:48px;}
+.comp-title span{background:linear-gradient(135deg,var(--purple2),var(--purple4));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border2);border-radius:16px;overflow:hidden;background:rgba(10,12,20,0.85);backdrop-filter:blur(16px);}
+.comp-col{padding:32px 36px;}
+.comp-col:first-child{border-right:1px solid var(--border2);}
+.comp-hdr{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.comp-row{display:flex;gap:12px;margin-bottom:16px;font-size:13px;line-height:1.6;}
+.comp-icon{flex-shrink:0;margin-top:2px;}
+.comp-text{color:var(--muted);}
+.comp-text strong{color:var(--text);font-weight:600;}
+
+/* EARLY ACCESS SECTION */
+.early{position:relative;z-index:10;padding:80px 24px;max-width:680px;margin:0 auto;text-align:center;}
+.early-card{background:rgba(124,92,252,0.07);border:1px solid var(--pborder);border-radius:20px;padding:48px 40px;}
+.early-title{font-family:'Syne',sans-serif;font-size:clamp(24px,3.5vw,40px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;}
+.early-sub{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:32px;}
+.early-perks{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;text-align:left;}
+.perk{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);}
+.perk-check{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--purple3));display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;font-weight:700;}
+.perk strong{color:var(--text);font-weight:600;}
+.early-cta-sub{font-size:11px;color:var(--dim);margin-top:14px;}
+
+/* FOOTER */
+footer{position:relative;z-index:10;border-top:1px solid var(--border);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,8,13,0.8);backdrop-filter:blur(16px);}
+.fl{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-size:16px;font-weight:800;letter-spacing:-.02em;}
+.fl-icon{width:26px;height:26px;border-radius:7px;overflow:hidden;background:rgba(124,92,252,0.15);border:1px solid var(--pborder);}
+.fl-icon canvas{width:26px;height:26px;}
+.fc{font-size:12px;color:var(--dim);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* COUNTER ANIMATION */
+.count-anim{display:inline-block;transition:all .3s;}
+
+/* POSITION BADGE */
+.pos-badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;background:rgba(34,197,94,0.1);border:1px solid var(--gborder);color:var(--green);padding:5px 12px;border-radius:20px;font-weight:600;}
+
+/* MOBILE */
+@media(max-width:640px){
+  nav{padding:0 20px;}
+  .feat-grid{grid-template-columns:1fr;}
+  .comp-grid{grid-template-columns:1fr;}
+  .comp-col:first-child{border-right:none;border-bottom:1px solid var(--border2);}
+  .wl-form{flex-direction:column;padding:12px;}
+  .wl-btn{width:100%;justify-content:center;}
+  .proof-strip{gap:20px;}
+  .proof-sep{display:none;}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:24px;}
+  .early-card{padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="dna"></canvas>
+<div class="veil"></div>
+<div class="orb1"></div>
+<div class="orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon"><canvas id="logoC" width="68" height="68"></canvas></div>
+    <span class="logo-text">TradeDNA</span>
+  </a>
+  <div class="nav-count">
+    <div class="live-dot"></div>
+    <span id="liveCount">847</span> traders on the waitlist
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow"><div class="epip"></div>Early access — Limited spots</div>
+
+  <h1 class="headline">
+    Your Edge Is Hidden<br>
+    In Your <span class="hl">Trading DNA.</span>
+  </h1>
+
+  <p class="subline">
+    TradeDNA is the AI coach that <strong>grades every trade you take,</strong> exposes your psychology leaks, and tells you exactly what's keeping you inconsistent — like having an elite performance coach reviewing your sessions.
+  </p>
+
+  <!-- WAITLIST FORM -->
+  <div class="waitlist-box">
+    <div class="wl-form" id="wlForm">
+      <input class="wl-input" type="email" id="emailInput" placeholder="Enter your email address" autocomplete="email">
+      <button class="wl-btn" id="wlBtn" onclick="joinWaitlist()">
+        Join the Waitlist →
+      </button>
+    </div>
+    <div class="wl-privacy">No spam. No credit card. Early access + 30% launch discount.</div>
+
+    <!-- SUCCESS -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">🧬</div>
+      <div class="success-title">You're on the list.</div>
+      <div class="success-sub">You're position <strong id="posNum" style="color:var(--purple2)">#848</strong> on the waitlist. We'll email you 48 hours before launch with early access and your discount code.</div>
+      <div class="share-btns">
+        <button class="share-btn" onclick="shareDiscord()">📋 Copy Discord message</button>
+        <button class="share-btn" onclick="shareTwitter()">𝕏 Share on X</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROOF STRIP -->
+  <div class="proof-strip">
+    <div class="proof-item">
+      <div class="proof-num" id="c1">847</div>
+      <div class="proof-label">On waitlist</div>
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-num">6</div>
+      <div class="proof-label">Scored dimensions</div>
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-num">~12s</div>
+      <div class="proof-label">Per full review</div>
+    </div>
+    <div class="proof-sep"></div>
+    <div class="proof-item">
+      <div class="proof-num">$0</div>
+      <div class="proof-label">To start</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <h2 class="features-title">Everything your trading is <span>missing.</span></h2>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">🧬</div>
+      <div class="feat-title">DNA Trade Reviews</div>
+      <div class="feat-desc">Upload a chart screenshot. Get a full 6-dimension score with plain-English explanations for every point. Not a number — a verdict.</div>
+      <div class="feat-example">"Entry placed 2 candles before MSS confirmation — your most common C-grade trigger across the last 14 trades."</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🧠</div>
+      <div class="feat-title">Psychology Detection</div>
+      <div class="feat-desc">The AI reads your trade notes and timing data to automatically detect patterns like early entries, revenge trades, and FOMO — without you having to label anything.</div>
+      <div class="feat-example">"early_exit detected — 6th occurrence this month. You've left 220 pips unrealised. Your analysis is correct. Stop overriding it."</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🎯</div>
+      <div class="feat-title">Edge Discovery</div>
+      <div class="feat-desc">After 10 reviewed trades, your pattern report unlocks. After 25, your full DNA fingerprint — the specific conditions where you actually have an edge.</div>
+      <div class="feat-example">"Your A+ setups share 3 traits: HTF OB as POI, London killzone, RR ≥ 2.5. These 4 trades averaged grade 9.1."</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <div class="feat-title">Process Grading</div>
+      <div class="feat-desc">A losing trade with good execution scores higher than a winning trade taken for the wrong reasons. We grade process, not outcome. This is the only way to actually improve.</div>
+      <div class="feat-example">"B+ trade that lost money. Structure, confirmation, and risk were all sound. This is a process win. Do not change your model."</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📈</div>
+      <div class="feat-title">Consistency Tracking</div>
+      <div class="feat-desc">Grade trends, session performance, mistake frequency, and a weekly performance brief every Sunday. You can't fix what you can't see.</div>
+      <div class="feat-example">"Your London session avg grade: 8.1. Your NY open first 30 minutes: 4.3. The data tells you where to trade."</div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔗</div>
+      <div class="feat-title">Built for Discord</div>
+      <div class="feat-desc">Score cards are formatted to embed perfectly in Discord. One click shares your review in your community — proof of process, not just P&amp;L screenshots.</div>
+      <div class="feat-example">"Share your B+ score card after a losing trade. That's the post that builds real reputation in trading communities."</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="comparison">
+  <h2 class="comp-title">Not another <span>trading journal.</span></h2>
+  <div class="comp-grid">
+    <div class="comp-col">
+      <div class="comp-hdr" style="color:var(--dim)">What every other tool says</div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--dim)">✕</span><div class="comp-text">"Win rate down 10%"</div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--dim)">✕</span><div class="comp-text">"Your stats this week"</div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--dim)">✕</span><div class="comp-text">"Journal your trade"</div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--dim)">✕</span><div class="comp-text">"Average RR: 1.8"</div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--dim)">✕</span><div class="comp-text">"Loss streak detected"</div></div>
+    </div>
+    <div class="comp-col">
+      <div class="comp-hdr" style="color:var(--purple2)">What TradeDNA tells you</div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--green)">→</span><div class="comp-text"><strong>"You lose 71% entering before MSS confirmation in NY open."</strong></div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--green)">→</span><div class="comp-text"><strong>"Here are the 3 specific reasons you are inconsistent."</strong></div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--green)">→</span><div class="comp-text"><strong>"Grade: B+. You entered 2 candles early — here's the exact cost."</strong></div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--green)">→</span><div class="comp-text"><strong>"Your A+ setups avg 3.2R. You're taking B-grade setups at 1.4R."</strong></div></div>
+      <div class="comp-row"><span class="comp-icon" style="color:var(--green)">→</span><div class="comp-text"><strong>"Early exit — 180 pips left on the table this month alone."</strong></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EARLY ACCESS -->
+<div class="early">
+  <div class="early-card">
+    <h2 class="early-title">Get in early.<br>Trade better sooner.</h2>
+    <p class="early-sub">Waitlist members get 48-hour early access, a 30% lifetime discount, and direct input into the features we build first.</p>
+    <div class="early-perks">
+      <div class="perk"><div class="perk-check">✓</div><span><strong>48-hour early access</strong> before public launch</span></div>
+      <div class="perk"><div class="perk-check">✓</div><span><strong>30% lifetime discount</strong> on any paid plan</span></div>
+      <div class="perk"><div class="perk-check">✓</div><span><strong>Founding member</strong> badge on your profile</span></div>
+      <div class="perk"><div class="perk-check">✓</div><span><strong>Direct access</strong> to the founding team</span></div>
+      <div class="perk"><div class="perk-check">✓</div><span><strong>Vote on features</strong> built in the first 90 days</span></div>
+    </div>
+    <div class="wl-form" id="wlForm2" style="margin-bottom:0">
+      <input class="wl-input" type="email" id="emailInput2" placeholder="Your email address" autocomplete="email">
+      <button class="wl-btn" onclick="joinWaitlist2()">Secure My Spot →</button>
+    </div>
+    <div class="early-cta-sub">No spam. Unsubscribe anytime. We ship in 2026.</div>
+  </div>
+</div>
+
+<footer>
+  <div class="fl">
+    <div class="fl-icon"><canvas id="footerLogo" width="52" height="52"></canvas></div>
+    TradeDNA
+  </div>
+  <div class="fc">We coach process. We don't predict markets. © 2026 TradeDNA</div>
+</footer>
+
+<script>
+// ══════════════════════════════════
+// DNA BACKGROUND
+// ══════════════════════════════════
+(function(){
+  const cv=document.getElementById('dna'),ctx=cv.getContext('2d');
+  let W,H,t=0;
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+  resize();window.addEventListener('resize',resize);
+  function col(cx,t,a){
+    const period=260,amp=38,sp=18,n=Math.floor((H+60)/sp)+2;
+    for(let i=0;i<n;i++){
+      const y=(i*sp)-(t%sp);
+      for(let s=0;s<2;s++){
+        const ph=s*Math.PI,ang=(y/period)*Math.PI*2+ph;
+        const x=cx+Math.sin(ang)*amp,dep=(Math.sin(ang)+1)/2;
+        const al=(0.06+dep*0.2)*a,bull=Math.random()>.45;
+        const bh=3+Math.random()*10,bw=4+dep*5,wh=2+Math.random()*6;
+        const c=bull?`rgba(34,197,94,${al})`:`rgba(239,68,68,${al})`;
+        ctx.strokeStyle=c;ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(x,y-bh/2-wh);ctx.lineTo(x,y+bh/2+wh);ctx.stroke();
+        ctx.fillStyle=c;ctx.fillRect(x-bw/2,y-bh/2,bw,bh);
+      }
+      if(i%3===0){
+        const ang=(y/period)*Math.PI*2;
+        const x1=cx+Math.sin(ang)*amp,x2=cx+Math.sin(ang+Math.PI)*amp;
+        ctx.strokeStyle=`rgba(124,92,252,${0.05*a})`;ctx.lineWidth=.8;
+        ctx.setLineDash([2,3]);ctx.beginPath();ctx.moveTo(x1,y);ctx.lineTo(x2,y);ctx.stroke();ctx.setLineDash([]);
+      }
+    }
+    ctx.beginPath();ctx.strokeStyle=`rgba(124,92,252,${0.1*a})`;ctx.lineWidth=1.5;
+    for(let y=0;y<H;y+=6){const ang=(y/260)*Math.PI*2+t*.01;ctx.lineTo(cx+Math.sin(ang)*18,y);}ctx.stroke();
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);t+=.35;
+    col(W*.14,t,.85);col(W*.5,t,1);col(W*.86,t,.85);
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ══════════════════════════════════
+// DNA LOGO
+// ══════════════════════════════════
+function drawLogo(cv,sz){
+  cv.width=sz*2;cv.height=sz*2;
+  const ctx=cv.getContext('2d');ctx.scale(2,2);
+  const cx=sz/2,period=sz*1.1,amp=sz*.22,sp=sz/8,n=Math.ceil(sz/sp)+1;
+  for(let i=0;i<n;i++){
+    const y=i*sp;
+    for(let s=0;s<2;s++){
+      const ph=s*Math.PI,ang=(y/period)*Math.PI*2+ph;
+      const x=cx+Math.sin(ang)*amp,dep=(Math.sin(ang)+1)/2;
+      const al=.45+dep*.55,bull=(i+s)%2===0;
+      const bh=Math.max(sz*.06,2),bw=Math.max(sz*.1,3)*(0.6+dep*.5);
+      const c=bull?`rgba(34,197,94,${al})`:`rgba(239,68,68,${al})`;
+      ctx.strokeStyle=c;ctx.lineWidth=.8;
+      ctx.beginPath();ctx.moveTo(x,y-bh/2-sz*.04);ctx.lineTo(x,y+bh/2+sz*.04);ctx.stroke();
+      ctx.fillStyle=c;ctx.fillRect(x-bw/2,y-bh/2,bw,bh);
+    }
+    if(i%2===0){
+      const ang=(y/period)*Math.PI*2;
+      const x1=cx+Math.sin(ang)*amp,x2=cx+Math.sin(ang+Math.PI)*amp;
+      ctx.strokeStyle='rgba(155,130,255,.4)';ctx.lineWidth=.7;
+      ctx.setLineDash([1,2]);ctx.beginPath();ctx.moveTo(x1,y);ctx.lineTo(x2,y);ctx.stroke();ctx.setLineDash([]);
+    }
+  }
+}
+setTimeout(()=>{
+  drawLogo(document.getElementById('logoC'),34);
+  drawLogo(document.getElementById('footerLogo'),26);
+},60);
+
+// ══════════════════════════════════
+// LIVE COUNTER (simulated growth)
+// ══════════════════════════════════
+let count = 847;
+function tickCounter(){
+  const delay = 8000 + Math.random()*22000;
+  setTimeout(()=>{
+    count++;
+    document.getElementById('liveCount').textContent=count;
+    document.getElementById('c1').textContent=count;
+    tickCounter();
+  }, delay);
+}
+tickCounter();
+
+// ══════════════════════════════════
+// WAITLIST SUBMISSION
+// ══════════════════════════════════
+function validateEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
+
+function submitEmail(email, formId, btnId){
+  const btn=document.getElementById(btnId);
+  if(!validateEmail(email)){
+    const input=document.querySelector('#'+formId+' .wl-input');
+    input.style.color='var(--red)';
+    input.placeholder='Please enter a valid email';
+    setTimeout(()=>{input.style.color='';input.placeholder='Enter your email address';},2000);
+    return;
+  }
+  btn.textContent='Adding you...';btn.classList.add('loading');
+
+  // ── REPLACE THIS with your actual Resend / Beehiiv / Supabase API call ──
+  // fetch('/api/waitlist', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})})
+  // For now: simulate a 1.2s API call
+  setTimeout(()=>{
+    count++;
+    document.getElementById('liveCount').textContent=count;
+    document.getElementById('c1').textContent=count;
+    document.getElementById('posNum').textContent='#'+count;
+    document.getElementById('wlForm').style.display='none';
+    document.getElementById('wl-privacy') && (document.querySelector('.wl-privacy').style.display='none');
+    document.getElementById('successState').classList.add('show');
+    // scroll to success
+    document.getElementById('successState').scrollIntoView({behavior:'smooth',block:'center'});
+  },1200);
+}
+
+function joinWaitlist(){
+  submitEmail(document.getElementById('emailInput').value,'wlForm','wlBtn');
+}
+function joinWaitlist2(){
+  const email=document.getElementById('emailInput2').value;
+  submitEmail(email,'wlForm2','wlBtn');
+}
+
+// Enter key support
+document.getElementById('emailInput').addEventListener('keydown',e=>{if(e.key==='Enter')joinWaitlist();});
+document.getElementById('emailInput2').addEventListener('keydown',e=>{if(e.key==='Enter')joinWaitlist2();});
+
+// ══════════════════════════════════
+// SHARE FUNCTIONS
+// ══════════════════════════════════
+function shareDiscord(){
+  const msg=`Just joined the TradeDNA waitlist 🧬\n\nIt grades your setups like an elite coach — scores your execution, catches psychology mistakes, and tells you exactly what's costing you consistency.\n\nBuilt for ICT/SMC traders. Free to start.\n\nGet early access: https://tradedna.live`;
+  navigator.clipboard.writeText(msg).then(()=>alert('Discord message copied! Paste it in your server.')).catch(()=>prompt('Copy this:',msg));
+}
+function shareTwitter(){
+  const text=encodeURIComponent('Just joined the @TradeDNA waitlist 🧬\n\nAI that grades your setups, catches psychology leaks, and tells you EXACTLY why you\'re inconsistent.\n\nBuilt for ICT/SMC traders. Free to start.\n\nhttps://tradedna.live');
+  window.open('https://twitter.com/intent/tweet?text='+text,'_blank');
+}
+</script>
+</body>
+</html>
